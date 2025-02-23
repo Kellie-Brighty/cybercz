@@ -19,7 +19,7 @@ const Tokenomics = () => {
             className="bg-gradient-to-b from-bnb-dark to-cyber-purple/10 p-6 rounded-xl border border-bnb-yellow/20"
           >
             <h3 className="text-2xl font-bold text-bnb-yellow mb-4">Buy Tax</h3>
-            <p className="text-6xl font-bold">4.2%</p>
+            <p className="text-6xl font-bold">0%</p>
             <p className="text-gray-400 mt-2">Because even CZ needs to learn about taxes</p>
           </motion.div>
           
@@ -30,7 +30,7 @@ const Tokenomics = () => {
             className="bg-gradient-to-b from-bnb-dark to-cyber-purple/10 p-6 rounded-xl border border-bnb-yellow/20"
           >
             <h3 className="text-2xl font-bold text-bnb-yellow mb-4">Sell Tax</h3>
-            <p className="text-6xl font-bold">6.9%</p>
+            <p className="text-6xl font-bold">0%</p>
             <p className="text-gray-400 mt-2">Nice.</p>
           </motion.div>
         </div>
