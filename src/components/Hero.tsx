@@ -1,8 +1,32 @@
 import { motion } from 'framer-motion';
 import CyberLogo from './CyberLogo';
 import SocialLinks from './SocialLinks';
+import { useState } from 'react';
+
+const ChartIcon = () => (
+  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M4 4v16h16" strokeLinecap="round" />
+    <path d="M7 12v4" strokeLinecap="round" />
+    <path d="M11 8v8" strokeLinecap="round" />
+    <path d="M15 6v10" strokeLinecap="round" />
+    <path d="M19 9v5" strokeLinecap="round" />
+  </svg>
+);
 
 const Hero = () => {
+  const [copied, setCopied] = useState(false);
+  const contractAddress = "0xfd89480d60b44135315db725e87d33c5478e1ccd";
+
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(contractAddress);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      console.error('Failed to copy:', err);
+    }
+  };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 py-16 sm:py-24">
       <div className="absolute inset-0 bg-gradient-to-r from-cyber-purple to-cyber-blue opacity-10 animate-gradient-x" />
@@ -42,6 +66,35 @@ const Hero = () => {
           <span className="text-bnb-yellow">Cyber</span> CZ
         </motion.h1>
         
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.3 }}
+          className="mb-8 px-4"
+        >
+          <div 
+            onClick={copyToClipboard}
+            className="inline-flex items-center gap-2 px-4 py-2 bg-bnb-dark/50 rounded-lg border border-bnb-yellow/20 cursor-pointer hover:bg-bnb-yellow/10 transition-all group max-w-full"
+          >
+            <span className="text-sm sm:text-base font-mono text-gray-400 truncate max-w-[180px] sm:max-w-none">
+              {contractAddress}
+            </span>
+            <span className="text-bnb-yellow text-sm whitespace-nowrap flex items-center gap-1">
+              {copied ? (
+                "Copied!"
+              ) : (
+                <>
+                  <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M8 4v12a2 2 0 002 2h8a2 2 0 002-2V7.242a2 2 0 00-.602-1.43L16.083 2.57A2 2 0 0014.685 2H10a2 2 0 00-2 2z" />
+                    <path d="M16 18v2a2 2 0 01-2 2H6a2 2 0 01-2-2V9a2 2 0 012-2h2" />
+                  </svg>
+                  Copy
+                </>
+              )}
+            </span>
+          </div>
+        </motion.div>
+        
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -58,9 +111,15 @@ const Hero = () => {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="flex flex-col sm:flex-row gap-4 justify-center px-4"
         >
-          <button className="w-full sm:w-auto bg-bnb-yellow text-bnb-dark px-6 sm:px-8 py-3 rounded-full text-base sm:text-lg font-semibold hover:bg-opacity-90 transition-all">
-            Learn DEX with CZ
-          </button>
+          <a 
+            href="https://www.dextools.io/app/en/bnb/pair-explorer/0x1322cb281ea22110a330ec3915c6b5fa954db625"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full sm:w-auto bg-bnb-yellow text-bnb-dark px-6 sm:px-8 py-3 rounded-full text-base sm:text-lg font-semibold hover:bg-opacity-90 transition-all inline-flex items-center justify-center gap-2 group"
+          >
+            <span>View Chart</span>
+            <ChartIcon />
+          </a>
           <a 
             href="http://t.me/cyberczbnb"
             target="_blank"
